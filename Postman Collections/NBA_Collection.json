@@ -1779,32 +1779,10 @@
 							"const vizData = {",
 							"",
 							"    // Labels take an array of strings",
-							"    labels: ['Age', 'Games', 'Games Started', 'Minutes Played', 'Field Goals', 'Field Attempts', 'Three FG', 'Three Attempts', 'Two FG', 'Two Attempts', 'FT', 'FTA', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS'],",
+							"    labels: res.results.map(result => result.player_name),",
 							"",
 							"    // Data takes an array of numbers",
-							"    data: [",
-							"        res.results[0].age,",
-							"        res.results[0].games,",
-							"        res.results[0].games_started,",
-							"        res.results[0].minutes_played,",
-							"        res.results[0].field_goals,",
-							"        res.results[0].field_attempts,",
-							"        res.results[0].three_fg,",
-							"        res.results[0].three_attempts,",
-							"        res.results[0].two_fg,",
-							"        res.results[0].two_attempts,",
-							"        res.results[0].ft,",
-							"        res.results[0].fta,",
-							"        res.results[0].ORB,",
-							"        res.results[0].DRB,",
-							"        res.results[0].TRB,",
-							"        res.results[0].AST,",
-							"        res.results[0].STL,",
-							"        res.results[0].BLK,",
-							"        res.results[0].TOV,",
-							"        res.results[0].PF,",
-							"        res.results[0].PTS,",
-							"    ]",
+							"    data: res.results.map(result => result.AST)",
 							"};",
 							"",
 							"var template = `",
@@ -1823,28 +1801,28 @@
 							"                data: [],",
 							"                ",
 							"                // Change these colours to customize the chart",
-							"                backgroundColor: [\"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\", \"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\", \"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\", \"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\"],",
+							"                backgroundColor: [\"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\"],",
 							"            }]",
 							"        },",
 							"        options: {",
 							"            legend: { display: false },",
 							"            title: {",
 							"                display: true,",
-							"                text: 'Top Assists'",
+							"                text: 'AST'",
 							"            },",
 							"            scales: {",
 							"                xAxes: [{",
 							"                    display: true,",
 							"                    scaleLabel: {",
 							"                        display: true,",
-							"                        labelString: 'Stat'",
+							"                        labelString: 'Player Name'",
 							"                    }",
 							"                }],",
 							"                yAxes: [{",
 							"                    display: true,",
 							"                    scaleLabel: {",
 							"                        display: true,",
-							"                        labelString: 'Value'",
+							"                        labelString: 'AST'",
 							"                    }",
 							"                }]",
 							"            }",
@@ -1861,7 +1839,35 @@
 							"    });",
 							"",
 							"</script>`;",
-							"pm.visualizer.set(template, vizData);"
+							"pm.visualizer.set(template, vizData);",
+							"",
+							"",
+							"",
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response has required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.count).to.exist;",
+							"    // pm.expect(responseData.next).to.exist;",
+							"    // pm.expect(responseData.previous).to.exist;",
+							"    pm.expect(responseData.results).to.exist;",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify the 'results' array is present and contains the expected number of elements\", function () {",
+							"    const responseData = pm.response.json();",
+							"",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.results).to.exist.and.to.be.an('array');",
+							"    pm.expect(responseData.results).to.have.lengthOf(20);",
+							"});",
+							"",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -1869,7 +1875,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "397e8f68-1a4e-41fd-ab3e-83bdb2f67ee2",
+						"id": "b66c5df5-4a9f-46be-a382-c68b88b1d505",
 						"exec": [],
 						"type": "text/javascript"
 					}
@@ -2020,6 +2026,26 @@
 		},
 		{
 			"name": "Top Rebounders by Season (Total Rebounds)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2e0371c-86fe-4870-8d0b-1725deedbc45",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "94b72370-c673-4035-b7e1-7cb599e15573",
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"id": "546fcfc1-7652-4a08-806e-32432512c940",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
