@@ -999,20 +999,17 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c60ba0c7-8120-4184-ab4d-cc55bbd317b3",
+						"id": "7975e386-e721-41f1-b99d-85533b57c935",
 						"exec": [
 							"const res = pm.response.json();",
-							"",
-							"// Sort the results by PTS in descending order",
-							"res.results.sort((a, b) => b.PTS - a.PTS);",
 							"",
 							"const vizData = {",
 							"",
 							"\t// Labels take an array of strings",
-							"\tlabels: res.results.map(player => player.player_name),",
+							"\tlabels: res.results.map(result => result.player_name),",
 							"",
 							"\t// Data takes an array of numbers",
-							"\tdata: res.results.map(player => player.PTS)",
+							"\tdata: res.results.map(result => result.PTS)",
 							"};",
 							"",
 							"var template = `",
@@ -1045,7 +1042,7 @@
 							"                    display: true,",
 							"                    scaleLabel: {",
 							"                        display: true,",
-							"                        labelString: 'Player Name'",
+							"                        labelString: 'Player'",
 							"                    }",
 							"                }],",
 							"                yAxes: [{",
@@ -1069,8 +1066,7 @@
 							"    });",
 							"",
 							"</script>`;",
-							"pm.visualizer.set(template, vizData);",
-							""
+							"pm.visualizer.set(template, vizData);"
 						],
 						"type": "text/javascript"
 					}
@@ -1078,7 +1074,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "f261cdfb-7af3-4226-96b3-754043cb35ac",
+						"id": "a4085e07-8da7-4904-abc1-dcc2f0db28e6",
 						"exec": [],
 						"type": "text/javascript"
 					}
