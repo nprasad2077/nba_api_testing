@@ -42,7 +42,7 @@
 							"});",
 							"",
 							"",
-							"pm.test(\"Games_started is a non-negative integer\", function () {",
+							"pm.test(\"Games started is a non-negative integer\", function () {",
 							"\tconst responseData = pm.response.json();",
 							"",
 							"\tpm.expect(responseData).to.be.an('object');",
@@ -75,7 +75,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "6922898b-bd6a-4eb0-8560-568b9291898c",
+						"id": "99f5ed52-a97d-4631-8b18-1e225499ce85",
 						"exec": [],
 						"type": "text/javascript"
 					}
