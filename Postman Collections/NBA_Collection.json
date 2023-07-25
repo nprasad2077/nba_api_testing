@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "37df4890-6773-45e1-b94d-4fc6dc689a36",
-		"name": "NBA Stats API v1.0 Beta Documentation",
+		"name": "NBA Stats API v1.1 Beta Documentation",
 		"description": "## NBA Stats API Documentation\n\nStats currently go back to the 2009-2010 season. More seasons are being added,\n\nView the Github project [here](https://github.com/nprasad2077/nbaStats).",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
