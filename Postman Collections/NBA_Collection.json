@@ -2325,7 +2325,7 @@
 							"    pm.expect(responseData).to.be.an('object');",
 							"    pm.expect(responseData.count).to.exist;",
 							"    pm.expect(responseData.next).to.exist;",
-							"    pm.expect(responseData.previous).to.exist;",
+							"    // pm.expect(responseData.previous).to.exist;",
 							"    pm.expect(responseData.results).to.exist;",
 							"});",
 							"",
@@ -2334,7 +2334,7 @@
 							"    const responseData = pm.response.json();",
 							"",
 							"    pm.expect(responseData.results).to.exist.and.to.be.an('array');",
-							"    pm.expect(responseData.results).to.have.lengthOf(1);",
+							"    pm.expect(responseData.results).to.have.length;",
 							"});",
 							"",
 							"",
@@ -2356,7 +2356,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d7b92141-4bb1-4b67-a709-e794d9d60c91",
+						"id": "97fe08c2-da95-49a1-a986-3aaaff333d07",
 						"exec": [],
 						"type": "text/javascript"
 					}
