@@ -1004,7 +1004,8 @@
 							"    });",
 							"",
 							"</script>`;",
-							"pm.visualizer.set(template, vizData);"
+							"pm.visualizer.set(template, vizData);",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -1012,7 +1013,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "294c9b78-4ff3-4417-bb62-148b807e5ec9",
+						"id": "f261cdfb-7af3-4226-96b3-754043cb35ac",
 						"exec": [],
 						"type": "text/javascript"
 					}
