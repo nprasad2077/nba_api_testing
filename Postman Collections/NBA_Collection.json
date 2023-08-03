@@ -183,7 +183,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://nba-stats-db.herokuapp.com/api/playerdata/name/Nikola Jokić",
+				"url": "https://nba-stats-db.herokuapp.com/api/playerdata/name/",
 				"description": "_player name is specified in the url._"
 			},
 			"response": [
