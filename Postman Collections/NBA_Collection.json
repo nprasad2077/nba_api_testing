@@ -170,7 +170,9 @@
 					"script": {
 						"id": "64187c38-47ce-4b64-b793-2b7b48f1b244",
 						"exec": [
-							""
+							"console.log(pm.environment.name)\r",
+							"const playerName = pm.environment.get(\"player_name\");\r",
+							"console.log(playerName)"
 						],
 						"type": "text/javascript"
 					}
@@ -782,7 +784,10 @@
 					"listen": "prerequest",
 					"script": {
 						"id": "4cd6bb0c-b698-4adb-91dd-d6b7ac360ec2",
-						"exec": [],
+						"exec": [
+							"console.log(pm.environment.name)\r",
+							"pm.environment.get(\"player_name\");"
+						],
 						"type": "text/javascript"
 					}
 				}
