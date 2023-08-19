@@ -1938,7 +1938,9 @@
 					"listen": "prerequest",
 					"script": {
 						"id": "b66c5df5-4a9f-46be-a382-c68b88b1d505",
-						"exec": [],
+						"exec": [
+							""
+						],
 						"type": "text/javascript"
 					}
 				}
@@ -1950,7 +1952,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "https://nba-stats-db.herokuapp.com/api/top_assists/playoffs/2022/",
+				"url": "https://nba-stats-db.herokuapp.com/api/top_assists/playoffs/2012/",
 				"description": "## Return top 20 players by assists (playoffs) in descending order.\n\n_Playoffs season is specified in the URL._"
 			},
 			"response": [
