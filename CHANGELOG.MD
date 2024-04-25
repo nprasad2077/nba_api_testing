@@ -7,14 +7,133 @@
 
 ### Types of changes
 
-- `Added` for new features.
-- `Changed` for changes in existing functionality.
-- `Deprecated` for soon-to-be removed features.
-- `Removed` for now removed features.
-- `Fixed` for any bug fixes.
-- `Security` in case of vulnerabilities.
+- `Added` (new features)
+- `Changed` (changes in existing functionality)
+- `Deprecated` (soon-to-be removed functionality)
+- `Removed` (removed functionality).
+- `Fixed` (bug fixes)
+- `Security` (vulnerabilities)
+- `Contributor` (notes on updates to the project)
 
 # Version History
+
+## v1.4.1
+### Changed
+* Update documentation by @shufinskiy in https://github.com/swar/nba_api/pull/406
+
+### Fixed
+* boxscoremathups swapped places Def and Off columns names by @shufinskiy in https://github.com/swar/nba_api/pull/409
+
+## v1.4.0
+### Added
+- In-Season Tournament Standings[ISTStandings](https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/iststandings.md). @shufinskiy #396
+- [EventMsgType](https://github.com/swar/nba_api/blob/master/src/nba_api/stats/library/eventmsgtype.py) now contains INSTANT_REPLAY (18). @usharerose #384 
+ 
+### Changed
+- All NBA player and team static data current as of 2023.11.09 #398
+
+### Deprecated
+- [EventMsgType](https://github.com/swar/nba_api/blob/master/src/nba_api/stats/library/eventmsgtype.py) UNKNOWN (18) has been deprecated and will be removed in a future release. #400
+
+### Fixed
+- The [playbyplay][https://github.com/rsforbes/nba_api/blob/master/src/nba_api/stats/library/playbyplayregex.py] regex for TURNOVER was updated to account for a space within the description provided by the NBA. #401
+
+### Security
+- Set minimum requirement for [certifi](https://pypi.org/project/certifi/) to 2023.7.22 per [CVE-2022-23491](https://www.cve.org/CVERecord?id=CVE-2023-37920) / [CWE-296](https://cwe.mitre.org/data/definitions/296.html) #384
+- Bumped urllib3 from 2.0.6 to 2.0.7 @dependabot #388
+
+### Developer Notes
+- [Black](https://github.com/psf/black) has been implemented project wide and will be required for all PRs. #399
+- DevContainer Changes #402
+  - The VSCode DevContainer was updated to pin Debian-11 due to changes in Debian 12 that have impacted Python development. 
+  - Poetry Shell now includes reference to the project.
+  - the ms-python.flake and ms-python.vscode-pylance extensions are now included
+
+## v1.3.1
+
+Date: 2023.10.07
+
+### Security
+- Set minimum requirement for [requests](https://pypi.org/project/requests/) to 2.31 per [CVE-2023-32681](https://www.cve.org/CVERecord?id=CVE-2023-32681) / [CWE-200](https://cwe.mitre.org/data/definitions/200.html) 
+- Set minimum requirement for [certifi](https://pypi.org/project/certifi/) to 2022.12.07 per [CVE-2022-23491](https://www.cve.org/CVERecord?id=CVE-2022-23491) / [CWE-345](https://cwe.mitre.org/data/definitions/345.html) 
+
+## v1.3.0
+
+Date: 2023-10-04
+
+### Added
+
+#### Endpoints
+Eleven new endpoints were added to this release. A massive thank you to @shufinskiy.
+- [BoxScoreAdvancedv3](docs/nba_api/stats/endpoints/boxscoreadvancedv3.md)
+- [BoxScoreDefensivev2](docs/nba_api/stats/endpoints/boxscoredefensivev2.md)
+- [BoxScoreFourFactorsv3](docs/nba_api/stats/endpoints/boxscorefourfactorsv3.md)
+- [BoxScoreHustlev2](docs/nba_api/stats/endpoints/boxscorehustlev2.md)
+- [BoxScoreMatchupsv3](docs/nba_api/stats/endpoints/boxscorematchupsv3.md)
+- [BoxScoreMiscv3](docs/nba_api/stats/endpoints/boxscoremiscv3.md)
+- [BoxScorePlayerTrackV3](docs/nba_api/stats/endpoints/boxscoreplayertrackv3.md)
+- [BoxScoreScoringV3](docs/nba_api/stats/endpoints/boxscorescoringv3.md)
+- [BoxScoreTraditionalv3](docs/nba_api/stats/endpoints/boxscoretraditionalv3.md)
+- [BoxScoreUsagev3](docs/nba_api/stats/endpoints/boxscoreusagev3.md)
+- [PlaybyPlayv3](docs/nba_api/stats/endpoints/playbyplayv3.md)
+
+### Changed
+
+#### NBA JSON schema 
+Until recently, the NBA JSON schema followed a tabular strucutre exposing `headers` and `resultSet`. The NBA is now using a nested JSON schema. In addition, the data labels are no longer uppercase (e.g., `PCT_OREB`), are now camelcase and, in many cases, more descriptive (e.g., `percentageReboundsOffensive`).
+
+#### Other
+- All NBA player and team data has been updated to the date of this release.
+- Corrected an invalid Slack within the text body to match the link present in the Slack shield.
+- Updated NBA team data to include the Nuggets 2023 championship (#350)
+
+## Known Issues
+Due to the change in the NBA schema, the following methods will currently return and empty dataframe `{}`
+- `.get_normalized_dict()`
+- `.get_normalized_json()`
+- `.get_headers_from_data_sets()`
+All other calls are expected to work as expected.
+
+### Removed
+The following eleven endpoints have been deprecated by the NBA and subsequently removed from the library
+- BoxScoreDefensive --> [BoxScoreDefensivev2](docs/nba_api/stats/endpoints/boxscoredefensivev2.md)
+- BoxScoreMatchups --> [BoxScoreMatchupsv3](docs/nba_api/stats/endpoints/boxscorematchupsv3.md)
+- LeagueHustleStatsPlayerLeaders --> unknown
+- LeagueHustleStatsTeamLeaders --> unknown
+- PlayerDashboardByOpponent --> unknown
+- TeamDashboardByClutch --> unknown
+- TeamDashboardByGameSplits --> unknown
+- TeamDashboardByLastNGames --> unknown
+- TeamDashboardByOpponent --> unknown
+- TeamDashboardByTeamPerformance --> unknown
+- TeamDashboardByYearOverYear --> unknown
+
+
+### Security
+- [urllib3](https://github.com/urllib3/urllib3) from 1.26.15 to 1.26.17. (#373) - @dependabot
+- [certifi](https://github.com/certifi/python-certifi) from 2022.12.7 to 2023.7.22 (#360) - @dependabot
+
+### Developer Tools
+Updated dev container to dynamically set the python path for Poetry. (#369)
+
+## v1.2.1
+
+Date: 2023-06-13
+
+### Security
+- [requests](https://github.com/psf/requests) bumped from 2.28.2 to 2.31.0 via #344 - @dependabot
+
+### Fixed
+
+- Reverted alexfayad@5076fae050ec7d655af300cde7674756c4381943. Change broke materialized url and test. Original URL was found to be valid.
+- Resolved bad url in documentation #322 - @alexfayad
+- Fixed typo in causing src/nba_api/stats/endpoints/playerindex.py to fail #340 - @shufinskiy 
+- Fixed expired Slack URL #347
+
+
+### Developer Tools
+- Support for VS Code Dev Containers (including auto-format via [black](https://github.com/psf/black))
+
 
 ## v1.2.0
 
